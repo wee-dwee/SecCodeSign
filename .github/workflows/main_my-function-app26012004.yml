@@ -131,10 +131,11 @@ jobs:
 
     # ✅ Step 11: Upload Updated ZIP as Artifact
     - name: 'Upload Updated Artifacts'
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: updated-artifacts
         path: output.zip
+
 
     # ✅ Step 12: Build C++ Verifier
     - name: 'Build C++ Verifier'
@@ -169,7 +170,7 @@ jobs:
 
     # ✅ Step 16: Upload Verification Results as Artifact
     - name: 'Upload Verification Results'
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: verification-results
         path: verification_output.txt
