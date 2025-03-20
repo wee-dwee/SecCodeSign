@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("GPGSigner")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cf3cf2b026e74c74aa48c8dec4329a333045c53d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ca31e1e4b860fdcce68dc53d752564909e6378e9")]
 [assembly: System.Reflection.AssemblyProductAttribute("GPGSigner")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GPGSigner")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
