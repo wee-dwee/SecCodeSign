@@ -1,7 +1,6 @@
-# Docs for the Azure Web Apps Deploy action: https://github.com/azure/functions-action
-# More GitHub Actions for Azure: https://github.com/Azure/actions
+# ✅ GitHub Actions Workflow for GPG Signing and C++ Verification
 
-name: Build and deploy dotnet core app to Azure Function App - my-function-app26012004
+name: Build, Sign, Modify, and Verify ModbusTCPMaster.zip
 
 on:
   push:
@@ -10,44 +9,167 @@ on:
   workflow_dispatch:
 
 env:
-  AZURE_FUNCTIONAPP_PACKAGE_PATH: '.' # set this to the path to your web app project, defaults to the repository root
-  DOTNET_VERSION: '8.0.x' # set this to the dotnet version to use
+  GPG_PRIVATE_KEY: "-----BEGIN PGP PRIVATE KEY BLOCK-----\n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\n=1Yx9\n-----END PGP PRIVATE KEY BLOCK-----"
+  GPG_PASSPHRASE: 'dwee1234@@'               # GPG passphrase
+  GPG_KEY_ID: '576058DD4A6CC331'             # GPG Key ID
+  DOTNET_VERSION: '6.0.x'                    # .NET version to use
 
 jobs:
   build-and-deploy:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     permissions:
-      id-token: write #This is required for requesting the JWT
-      contents: read #This is required for actions/checkout
+      id-token: write
+      contents: read
 
     steps:
-      - name: 'Checkout GitHub Action'
-        uses: actions/checkout@v4
+    # ✅ Step 1: Checkout Code
+    - name: 'Checkout Code'
+      uses: actions/checkout@v4
 
-      - name: Setup DotNet ${{ env.DOTNET_VERSION }} Environment
-        uses: actions/setup-dotnet@v1
-        with:
-          dotnet-version: ${{ env.DOTNET_VERSION }}
+    # ✅ Step 2: Install Required Packages
+    - name: 'Install Required Packages'
+      run: |
+        echo "⚙️ Installing Required Packages..."
+        sudo apt-get update && sudo apt-get install -y gnupg unzip zip jq g++
+        echo "✅ Required Packages Installed Successfully"
 
-      - name: 'Resolve Project Dependencies Using Dotnet'
-        shell: pwsh
-        run: |
-          pushd './${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}'
-          dotnet build --configuration Release --output ./output
-          popd
-      
-      - name: Login to Azure
-        uses: azure/login@v2
-        with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_DAB98AF98D834886A187085A2BB56928 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_E5581665384540148FB57CCA718BC57C }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_A1F20761757A4374B2C8882CF8493388 }}
+    # ✅ Step 3: Import GPG Private Key
+    - name: 'Import GPG Private Key'
+      run: |
+        echo "🔐 Importing GPG Private Key..."
+        echo "$GPG_PRIVATE_KEY" | gpg --batch --import
+        gpg --list-secret-keys --keyid-format LONG
+        echo "✅ GPG Key Imported Successfully"
 
-      - name: 'Run Azure Functions Action'
-        uses: Azure/functions-action@v1
-        id: fa
-        with:
-          app-name: 'my-function-app26012004'
-          slot-name: 'Production'
-          package: '${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}/output'
-          
+    # ✅ Step 4: Set GPG Key Trust Level
+    - name: 'Set GPG Key Trust Level'
+      run: |
+        echo -e "trust\n5\ny\nsave\n" | gpg --batch --command-fd 0 --edit-key $GPG_KEY_ID
+        echo "✅ Trust Level Set Successfully"
+
+    # ✅ Step 5: Setup .NET Environment
+    - name: 'Setup DotNet ${{ env.DOTNET_VERSION }} Environment'
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: ${{ env.DOTNET_VERSION }}
+
+    # ✅ Step 6: Build C# GPGSigner Project
+    - name: 'Build GPGSigner Program'
+      run: |
+        echo "⚙️ Building GPGSigner Program..."
+        dotnet build GPGSigner.csproj --configuration Release
+        echo "✅ Build Completed Successfully"
+
+    # ✅ Step 7: Run GPGSigner to Sign and Create ZIP
+    - name: 'Run GPGSigner Program'
+      run: |
+        echo "🚀 Running GPGSigner Program to Sign and Create ZIP..."
+        dotnet bin/Release/net6.0/GPGSigner.dll ModbusTCPMaster.zip $GPG_KEY_ID
+        echo "✅ GPGSigner Execution Completed"
+
+    # ✅ Step 8: Verify that output.zip Exists
+    - name: 'Verify output.zip Existence'
+      run: |
+        if [ -f "output.zip" ]; then
+          echo "✅ output.zip created successfully"
+        else
+          echo "❌ Error: output.zip not found!"
+          exit 1
+        fi
+
+    # ✅ Step 9: Open, Modify, and Re-zip ModbusTCPMaster.zip
+    - name: 'Open, Modify & Re-zip ModbusTCPMaster.zip'
+      run: |
+        echo "📂 Unzipping output.zip..."
+        unzip -o output.zip -d temp_dir
+        echo "✅ Unzip Complete"
+
+        echo "📂 Unzipping ModbusTCPMaster.zip from extracted content..."
+        if [ -f "temp_dir/ModbusTCPMaster.zip" ]; then
+          unzip -o temp_dir/ModbusTCPMaster.zip -d temp_dir/ModbusTCPMaster
+          echo "✅ ModbusTCPMaster.zip extracted successfully"
+        else
+          echo "❌ Error: ModbusTCPMaster.zip not found!"
+          exit 1
+        fi
+
+        echo "📝 Modifying package_config.json..."
+        PACKAGE_CONFIG="temp_dir/ModbusTCPMaster/package_config.json"
+
+        # Check if the file exists
+        if [ -f "$PACKAGE_CONFIG" ]; then
+          # Modify the content (Example: Increment version number)
+          jq '.version += 1' "$PACKAGE_CONFIG" > temp_dir/ModbusTCPMaster/package_config_updated.json
+          mv temp_dir/ModbusTCPMaster/package_config_updated.json "$PACKAGE_CONFIG"
+          echo "✅ package_config.json modified successfully"
+        else
+          echo "❌ Error: package_config.json not found!"
+          exit 1
+        fi
+
+        echo "📦 Zipping ModbusTCPMaster content again..."
+        cd temp_dir/ModbusTCPMaster
+        zip -r ModbusTCPMaster.zip .
+        mv ModbusTCPMaster.zip ../
+        cd ../..
+
+        echo "📦 Replacing modified ModbusTCPMaster.zip in output.zip..."
+        cd temp_dir
+        zip -r ../output.zip *
+        cd ..
+        echo "✅ output.zip updated successfully"
+
+    # ✅ Step 10: Verify Updated output.zip Existence
+    - name: 'Verify Updated output.zip'
+      run: |
+        if [ -f "output.zip" ]; then
+          echo "✅ Updated output.zip found successfully"
+        else
+          echo "❌ Error: Updated output.zip not found!"
+          exit 1
+        fi
+
+    # ✅ Step 11: Upload Updated ZIP as Artifact
+    - name: 'Upload Updated Artifacts'
+      uses: actions/upload-artifact@v3
+      with:
+        name: updated-artifacts
+        path: output.zip
+
+    # ✅ Step 12: Build C++ Verifier
+    - name: 'Build C++ Verifier'
+      run: |
+        echo "⚙️ Building C++ Verifier..."
+        g++ -o GPGVerifier GPGVerifier.cpp
+        echo "✅ C++ Build Completed Successfully"
+
+    # ✅ Step 13: Unzip Updated output.zip for C++ Verification
+    - name: 'Unzip Updated output.zip for Verification'
+      run: |
+        echo "📂 Unzipping updated output.zip for verification..."
+        unzip -o output.zip -d verification_dir
+        echo "✅ Unzip Complete"
+
+    # ✅ Step 14: Run C++ Verification on Extracted Files
+    - name: 'Run C++ Verification'
+      run: |
+        echo "🔍 Running C++ Verification on Extracted Files..."
+        ./GPGVerifier > verification_output.txt 2>&1
+        echo "✅ C++ Verification Completed"
+
+    # ✅ Step 15: Print C++ Verification Output
+    - name: 'Print C++ Verification Output'
+      run: |
+        echo "📄 Printing C++ Verification Output..."
+        if [ -f "verification_output.txt" ]; then
+          cat verification_output.txt
+        else
+          echo "⚠️ No verification_output.txt file found"
+        fi
+
+    # ✅ Step 16: Upload Verification Results as Artifact
+    - name: 'Upload Verification Results'
+      uses: actions/upload-artifact@v3
+      with:
+        name: verification-results
+        path: verification_output.txt
