@@ -88,7 +88,7 @@ vector<string> listFiles()
 
 int main()
 {
-    string zipFile = "GPGSigner/output.zip";
+    string zipFile = "output.zip";
 
     // Check if output.zip exists
     if (system(("test -f " + zipFile).c_str()) != 0)
