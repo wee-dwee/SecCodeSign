@@ -134,7 +134,7 @@ jobs:
     - name: 'Run C++ Verification'
       run: |
         echo "🔍 Running C++ Verification on Extracted Files..."
-        ./GPGVerifier > verification_output.txt 2>&1
+        ./GPGVerifier > verification_output.txt
         echo "✅ C++ Verification Completed"
 
     # ✅ Step 15: Print C++ Verification Output
