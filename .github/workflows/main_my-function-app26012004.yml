@@ -62,7 +62,7 @@ jobs:
         echo "📂 Unzipping output.zip..."
         unzip -o output.zip -d temp_dir
         echo "✅ Unzip Complete"
-
+    
         echo "📂 Unzipping ModbusTCPMaster.zip from extracted content..."
         if [ -f "temp_dir/ModbusTCPMaster.zip" ]; then
           unzip -o temp_dir/ModbusTCPMaster.zip -d temp_dir/ModbusTCPMaster
@@ -71,10 +71,10 @@ jobs:
           echo "❌ Error: ModbusTCPMaster.zip not found!"
           exit 1
         fi
-
+    
         echo "📝 Modifying package_config.json..."
         PACKAGE_CONFIG="temp_dir/ModbusTCPMaster/package_config.json"
-
+    
         # Check if the file exists
         if [ -f "$PACKAGE_CONFIG" ]; then
           # Modify the content (Example: Increment version number)
@@ -85,13 +85,17 @@ jobs:
           echo "❌ Error: package_config.json not found!"
           exit 1
         fi
-
+    
         echo "📦 Zipping ModbusTCPMaster content again..."
         cd temp_dir/ModbusTCPMaster
         zip -r ModbusTCPMaster.zip .
         mv ModbusTCPMaster.zip ../
         cd ../..
-
+    
+        echo "🧹 Removing ModbusTCPMaster folder..."
+        rm -rf temp_dir/ModbusTCPMaster
+        echo "✅ ModbusTCPMaster folder removed successfully"
+    
         echo "📦 Replacing modified ModbusTCPMaster.zip in output.zip..."
         cd temp_dir
         zip -r ../output.zip *
