@@ -43,7 +43,7 @@ jobs:
     - name: 'Run GPGSigner Program'
       run: |
         echo "🚀 Running GPGSigner Program to Sign and Create ZIP..."
-        dotnet bin/Release/net6.0/GPGSigner.dll ModbusTCPMaster.zip $GPG_KEY_ID
+        dotnet run ModbusTCPMaster.zip $GPG_KEY_ID
         echo "✅ GPGSigner Execution Completed"
 
     # ✅ Step 8: Verify that output.zip Exists
