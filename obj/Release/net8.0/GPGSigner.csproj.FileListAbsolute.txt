@@ -1,0 +1,15 @@
+/Users/dweejpandya/Documents/gpgchecks/GPGSigner/bin/Release/net8.0/GPGSigner
+/Users/dweejpandya/Documents/gpgchecks/GPGSigner/bin/Release/net8.0/GPGSigner.deps.json
+/Users/dweejpandya/Documents/gpgchecks/GPGSigner/bin/Release/net8.0/GPGSigner.runtimeconfig.json
+/Users/dweejpandya/Documents/gpgchecks/GPGSigner/bin/Release/net8.0/GPGSigner.dll
+/Users/dweejpandya/Documents/gpgchecks/GPGSigner/bin/Release/net8.0/GPGSigner.pdb
+/Users/dweejpandya/Documents/gpgchecks/GPGSigner/obj/Release/net8.0/GPGSigner.GeneratedMSBuildEditorConfig.editorconfig
+/Users/dweejpandya/Documents/gpgchecks/GPGSigner/obj/Release/net8.0/GPGSigner.AssemblyInfoInputs.cache
+/Users/dweejpandya/Documents/gpgchecks/GPGSigner/obj/Release/net8.0/GPGSigner.AssemblyInfo.cs
+/Users/dweejpandya/Documents/gpgchecks/GPGSigner/obj/Release/net8.0/GPGSigner.csproj.CoreCompileInputs.cache
+/Users/dweejpandya/Documents/gpgchecks/GPGSigner/obj/Release/net8.0/GPGSigner.sourcelink.json
+/Users/dweejpandya/Documents/gpgchecks/GPGSigner/obj/Release/net8.0/GPGSigner.dll
+/Users/dweejpandya/Documents/gpgchecks/GPGSigner/obj/Release/net8.0/refint/GPGSigner.dll
+/Users/dweejpandya/Documents/gpgchecks/GPGSigner/obj/Release/net8.0/GPGSigner.pdb
+/Users/dweejpandya/Documents/gpgchecks/GPGSigner/obj/Release/net8.0/GPGSigner.genruntimeconfig.cache
+/Users/dweejpandya/Documents/gpgchecks/GPGSigner/obj/Release/net8.0/ref/GPGSigner.dll

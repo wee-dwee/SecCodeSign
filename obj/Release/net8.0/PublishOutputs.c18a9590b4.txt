@@ -1,0 +1,5 @@
+/Users/dweejpandya/Documents/gpgchecks/GPGSigner/publish/GPGSigner
+/Users/dweejpandya/Documents/gpgchecks/GPGSigner/publish/GPGSigner.dll
+/Users/dweejpandya/Documents/gpgchecks/GPGSigner/publish/GPGSigner.deps.json
+/Users/dweejpandya/Documents/gpgchecks/GPGSigner/publish/GPGSigner.runtimeconfig.json
+/Users/dweejpandya/Documents/gpgchecks/GPGSigner/publish/GPGSigner.pdb
