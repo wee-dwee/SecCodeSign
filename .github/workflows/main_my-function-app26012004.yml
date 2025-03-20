@@ -25,13 +25,6 @@ jobs:
     - name: 'Set GPG Key Trust'
       run: |
         gpg --import-ownertrust <<< "52734E8E778377946DDD0AA0576058DD4A6CC331:6"
-
-    - name: 'Sign Artifact with GPG'
-      run: |
-        gpg --batch --yes --passphrase "$GPG_PASSPHRASE" --pinentry-mode loopback \
-        --detach-sign --armor -u 52734E8E778377946DDD0AA0576058DD4A6CC331 -o artifact.sig artifact.zip
-      env:
-        GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
         
     # ✅ Step 5: Setup .NET Environment
     - name: 'Setup DotNet ${{ env.DOTNET_VERSION }} Environment'
