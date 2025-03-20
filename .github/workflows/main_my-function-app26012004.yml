@@ -1,51 +1,38 @@
-# ✅ GitHub Actions Workflow for GPG Signing and C++ Verification
-
-name: Build, Sign, Modify, and Verify ModbusTCPMaster.zip
+name: Sign and Verify GPG Artifacts
 
 on:
   push:
     branches:
       - main
-  workflow_dispatch:
-
-env:
-  GPG_PASSPHRASE: 'dwee1234@@'               # GPG passphrase
-  GPG_KEY_ID: '576058DD4A6CC331'             # GPG Key ID
-  DOTNET_VERSION: '9.0.x'                    # .NET version to use
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
-    permissions:
-      id-token: write
-      contents: read
 
     steps:
-    # ✅ Step 1: Checkout Code
     - name: 'Checkout Code'
       uses: actions/checkout@v4
 
-    # ✅ Step 2: Install Required Packages
-    - name: 'Install Required Packages'
-      run: |
-        echo "⚙️ Installing Required Packages..."
-        sudo apt-get update && sudo apt-get install -y gnupg unzip zip jq g++
-        echo "✅ Required Packages Installed Successfully"
-
-    # ✅ Step 3: Import GPG Private Key
     - name: 'Import GPG Private Key'
       run: |
         echo "🔐 Importing GPG Private Key..."
-        echo "$GPG_PRIVATE_KEY" | gpg --batch --import
+        echo "$GPG_PRIVATE_KEY" | base64 --decode | gpg --batch --import
         gpg --list-secret-keys --keyid-format LONG
         echo "✅ GPG Key Imported Successfully"
+      env:
+        GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
 
-    # ✅ Step 4: Set GPG Key Trust Level
-    - name: 'Set GPG Key Trust Level'
+    - name: 'Set GPG Key Trust'
       run: |
-        echo -e "trust\n5\ny\nsave\n" | gpg --batch --command-fd 0 --edit-key $GPG_KEY_ID
-        echo "✅ Trust Level Set Successfully"
+        gpg --import-ownertrust <<< "52734E8E778377946DDD0AA0576058DD4A6CC331:6"
 
+    - name: 'Sign Artifact with GPG'
+      run: |
+        gpg --batch --yes --passphrase "$GPG_PASSPHRASE" --pinentry-mode loopback \
+        --detach-sign --armor -u 52734E8E778377946DDD0AA0576058DD4A6CC331 -o artifact.sig artifact.zip
+      env:
+        GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+        
     # ✅ Step 5: Setup .NET Environment
     - name: 'Setup DotNet ${{ env.DOTNET_VERSION }} Environment'
       uses: actions/setup-dotnet@v4
