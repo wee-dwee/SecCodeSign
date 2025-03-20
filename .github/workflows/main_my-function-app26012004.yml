@@ -153,3 +153,31 @@ jobs:
       with:
         name: verification-results
         path: verification_output.txt
+
+    # ✅ Step 17: Create a Common ZIP File with Both Artifacts
+    - name: 'Create Final ZIP with All Artifacts'
+      run: |
+        echo "📦 Creating final_artifacts.zip with both artifacts..."
+        mkdir final_artifacts
+        cp output.zip final_artifacts/
+        cp verification_output.txt final_artifacts/
+        cd final_artifacts
+        zip -r ../final_artifacts.zip *
+        cd ..
+        echo "✅ final_artifacts.zip created successfully"
+    
+    # ✅ Step 18: Upload Final ZIP as Artifact
+    - name: 'Upload Final ZIP with All Artifacts'
+      uses: actions/upload-artifact@v4
+      with:
+        name: final-artifacts
+        path: final_artifacts.zip
+    
+    # ✅ Step 19: Clean Up Intermediate Files
+    - name: 'Clean Up Intermediate Files'
+      run: |
+        echo "🧹 Cleaning up intermediate files..."
+        rm -rf output.zip verification_output.txt final_artifacts
+        echo "✅ Cleanup complete"
+
+
