@@ -80,17 +80,17 @@ jobs:
           exit 1
         fi
     
-        echo "📝 Modifying package_config.json..."
-        PACKAGE_CONFIG="temp_dir/ModbusTCPMaster/package_config.json"
+        echo "📝 Modifying Project1.deps.json..."
+        PACKAGE_CONFIG="temp_dir/ModbusTCPMaster/Project1.deps.json"
     
         # Check if the file exists
         if [ -f "$PACKAGE_CONFIG" ]; then
           # Modify the content (Example: Increment version number)
-          jq '.version += 1' "$PACKAGE_CONFIG" > temp_dir/ModbusTCPMaster/package_config_updated.json
-          mv temp_dir/ModbusTCPMaster/package_config_updated.json "$PACKAGE_CONFIG"
+          jq '.version += 1' "$PACKAGE_CONFIG" > temp_dir/ModbusTCPMaster/Project1.deps_updated.json
+          mv temp_dir/ModbusTCPMaster/Project1.deps_updated.json "$PACKAGE_CONFIG"
           echo "✅ package_config.json modified successfully"
         else
-          echo "❌ Error: package_config.json not found!"
+          echo "❌ Error: Project1.deps.json not found!"
           exit 1
         fi
     
