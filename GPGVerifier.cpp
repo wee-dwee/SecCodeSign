@@ -44,7 +44,7 @@ void verifySignature(const string &filePath)
 {
     string signatureFile = filePath + ".sig";
     string command = "gpg --verify " + signatureFile + " " + filePath;
-
+    cout<<signatureFile<<" "<<filePath<<endl;
     cout << "Verifying signature...\n";
     int result = system(command.c_str());
 
