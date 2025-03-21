@@ -44,6 +44,7 @@ class GPGSigner
             string error = process.StandardError.ReadToEnd();
             process.WaitForExit();
             Console.WriteLine($"Signing file using key: ...");
+            Console.WriteLine(process.ExitCode);
             if (process.ExitCode == 0)
             {
                 Console.WriteLine($"✅ File signed successfully: {signatureFile}");
