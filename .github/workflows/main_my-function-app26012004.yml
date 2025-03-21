@@ -26,6 +26,10 @@ jobs:
       run: |
         echo "52734E8E778377946DDD0AA0576058DD4A6CC331:6" | gpg --import-ownertrust
         echo "✅ GPG Key Trust Set Successfully"
+
+    - name: Set GPG Passphrase
+      run: |
+        echo "GPG_PASSPHRASE=${{ secrets.GPG_PASSPHRASE }}" >> $GITHUB_ENV
     
     # ✅ Step 5: Setup .NET Environment
     - name: 'Setup DotNet ${{ env.DOTNET_VERSION }} Environment'
