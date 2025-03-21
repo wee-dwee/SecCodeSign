@@ -127,12 +127,6 @@ jobs:
         g++ -o GPGVerifier GPGVerifier.cpp
         echo "✅ C++ Build Completed Successfully"
 
-    # ✅ Step 13: Unzip Updated output.zip for C++ Verification
-    - name: 'Unzip Updated output.zip for Verification'
-      run: |
-        echo "📂 Unzipping updated output.zip for verification..."
-        unzip -o output.zip -d verification_dir
-        echo "✅ Unzip Complete"
 
     # ✅ Step 14: Run C++ Verification on Extracted Files
     - name: 'Run C++ Verification'
