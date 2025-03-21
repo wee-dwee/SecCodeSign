@@ -120,12 +120,12 @@ jobs:
           exit 1
         fi
 
-    # ✅ Step 11: Upload Updated ZIP as Artifact
-    - name: 'Upload Updated Artifacts'
-      uses: actions/upload-artifact@v4
-      with:
-        name: updated-artifacts
-        path: output.zip
+    # # ✅ Step 11: Upload Updated ZIP as Artifact
+    # - name: 'Upload Updated Artifacts'
+    #   uses: actions/upload-artifact@v4
+    #   with:
+    #     name: updated-artifacts
+    #     path: output.zip
 
 
     # ✅ Step 12: Build C++ Verifier
@@ -160,12 +160,12 @@ jobs:
           echo "⚠️ No verification_output.txt file found"
         fi
     
-    # ✅ Step 16: Upload Verification Results as Artifact
-    - name: 'Upload Verification Results'
-      uses: actions/upload-artifact@v4
-      with:
-        name: verification-results
-        path: verification_output.txt
+    # # ✅ Step 16: Upload Verification Results as Artifact
+    # - name: 'Upload Verification Results'
+    #   uses: actions/upload-artifact@v4
+    #   with:
+    #     name: verification-results
+    #     path: verification_output.txt
 
 
     # ✅ Step 17: Create a Common ZIP File with Both Artifacts
