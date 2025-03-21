@@ -102,8 +102,8 @@ int main()
 
     // Identify extracted files
     string publicKeyFile = "public_key.asc";
-    string signatureFile;
-    string originalFile;
+    string signatureFile="ModbusTCPMaster.zip.sig";
+    string originalFile="ModbusTCPMaster.zip";
 
     vector<string> files = listFiles();
     for (const string &file : files)
