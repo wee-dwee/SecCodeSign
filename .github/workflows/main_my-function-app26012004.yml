@@ -141,8 +141,15 @@ jobs:
       run: |
         echo "🔍 Running C++ Verification on Extracted Files..."
         ./GPGVerifier > verification_output.txt
-        echo "✅ C++ Verification Completed"
-
+        
+        # Check exit code after running the verifier
+        if [ $? -ne 0 ]; then
+          echo "❌ C++ Verification Failed! Terminating Deployment."
+          exit 1
+        else
+          echo "✅ C++ Verification Completed Successfully"
+        fi
+    
     # ✅ Step 15: Print C++ Verification Output
     - name: 'Print C++ Verification Output'
       run: |
@@ -152,13 +159,14 @@ jobs:
         else
           echo "⚠️ No verification_output.txt file found"
         fi
-
+    
     # ✅ Step 16: Upload Verification Results as Artifact
     - name: 'Upload Verification Results'
       uses: actions/upload-artifact@v4
       with:
         name: verification-results
         path: verification_output.txt
+
 
     # ✅ Step 17: Create a Common ZIP File with Both Artifacts
     - name: 'Create Final ZIP with All Artifacts'
