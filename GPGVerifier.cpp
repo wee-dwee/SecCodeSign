@@ -50,7 +50,7 @@ void verifySignature(const string &filePath)
 
     if (result == 0)
     {
-        cout << "✅ Signature verified successfully. The file is authentic.\n";
+        cout << "✅ Signature verified successfully. The file is authenticc.\n";
     }
     else
     {
