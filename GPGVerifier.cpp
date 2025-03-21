@@ -55,6 +55,7 @@ void verifySignature(const string &filePath)
     else
     {
         cerr << "❌ Signature verification failed! Possible tampering detected.\n";
+        exit(2);
     }
 }
 
