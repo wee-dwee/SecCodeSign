@@ -9,7 +9,7 @@ class GPGSigner
     {
         string signatureFile = filePath + ".sig";
 
-        Console.WriteLine($"Signing file using key: {keyID}...");
+        Console.WriteLine($"Signing file using key: ...");
 
         try
         {
