@@ -39,12 +39,14 @@ jobs:
         dotnet build GPGSigner.csproj --configuration Release
         echo "✅ Build Completed Successfully"
 
-    # ✅ Step 7: Run GPGSigner to Sign and Create ZIP
-    - name: 'Run GPGSigner Program'
+    - name: 'Sign ModbusTCPMaster.zip'
       run: |
-        echo "🚀 Running GPGSigner Program to Sign and Create ZIP..."
-        dotnet run ModbusTCPMaster.zip $GPG_KEY_ID
-        echo "✅ GPGSigner Execution Completed"
+        echo "🔏 Signing ModbusTCPMaster.zip..."
+        dotnet bin/Release/net8.0/GPGSigner.dll "$(pwd)/ModbusTCPMaster.zip" $GPG_KEY_ID
+        echo "✅ ModbusTCPMaster.zip signed successfully."
+      env:
+        GPG_KEY_ID: ${{ secrets.GPG_KEY_ID }}
+        GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
 
     # ✅ Step 8: Verify that output.zip Exists
     - name: 'Verify output.zip Existence'
