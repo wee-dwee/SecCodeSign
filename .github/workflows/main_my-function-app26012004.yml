@@ -21,24 +21,26 @@ jobs:
         echo "✅ GPG Key Imported Successfully"
       env:
         GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
-
+    
     - name: 'Set GPG Key Trust'
       run: |
-        gpg --import-ownertrust <<< "52734E8E778377946DDD0AA0576058DD4A6CC331:6"
-        
+        echo "52734E8E778377946DDD0AA0576058DD4A6CC331:6" | gpg --import-ownertrust
+        echo "✅ GPG Key Trust Set Successfully"
+    
     # ✅ Step 5: Setup .NET Environment
     - name: 'Setup DotNet ${{ env.DOTNET_VERSION }} Environment'
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: ${{ env.DOTNET_VERSION }}
-
+    
     # ✅ Step 6: Build C# GPGSigner Project
     - name: 'Build GPGSigner Program'
       run: |
         echo "⚙️ Building GPGSigner Program..."
         dotnet build GPGSigner.csproj --configuration Release
         echo "✅ Build Completed Successfully"
-
+    
+    # ✅ Step 7: Sign ModbusTCPMaster.zip
     - name: 'Sign ModbusTCPMaster.zip'
       run: |
         echo "🔏 Signing ModbusTCPMaster.zip..."
