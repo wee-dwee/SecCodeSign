@@ -16,12 +16,7 @@ class GPGSigner
             Process process = new Process();
             process.StartInfo.FileName = "gpg";
             // ✅ Add passphrase if available as an environment variable
-            string? passphrase = Environment.GetEnvironmentVariable("GPG_PASSPHRASE");
-            if (!string.IsNullOrWhiteSpace(passphrase))
-            {
-                process.StartInfo.ArgumentList.Add("--passphrase");
-                process.StartInfo.ArgumentList.Add(passphrase);
-            }
+            string? passphrase = "dwee1234@@"
 
             // ✅ Add --batch and --pinentry-mode loopback to avoid interactive input
             process.StartInfo.ArgumentList.Add("--batch");
