@@ -1,4 +1,8 @@
 name: Sign and Verify GPG Artifacts
+env:
+  AZURE_FUNCTIONAPP_NAME: 'my-function-app26012004'  
+  AZURE_FUNCTIONAPP_PACKAGE_PATH: '.'      
+  DOTNET_VERSION: '8.0.x'        
 
 on:
   push:
@@ -186,6 +190,14 @@ jobs:
       with:
         name: final-artifacts
         path: final_artifacts.zip
+  
+   # ✅ Step 10: Deploy to Azure Function App
+    - name: 'Deploy to Azure Function App'
+      uses: Azure/functions-action@v1
+      with:
+        app-name: ${{ env.AZURE_FUNCTIONAPP_NAME }}
+        package: './output.zip'
+        publish-profile: ${{ secrets.AZURE_FUNCTIONAPP_PUBLISH_PROFILE }}
     
     # ✅ Step 19: Clean Up Intermediate Files
     - name: 'Clean Up Intermediate Files'
