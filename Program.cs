@@ -24,6 +24,12 @@ class GPGSigner
             process.StartInfo.ArgumentList.Add("--pinentry-mode");
             process.StartInfo.ArgumentList.Add("loopback");
 
+            if (!string.IsNullOrWhiteSpace(passphrase))
+            {
+                process.StartInfo.ArgumentList.Add("--passphrase");
+                process.StartInfo.ArgumentList.Add(passphrase);
+            }
+
             // ✅ GPG Signing Arguments
             process.StartInfo.ArgumentList.Add("-u");
             process.StartInfo.ArgumentList.Add(keyID);
