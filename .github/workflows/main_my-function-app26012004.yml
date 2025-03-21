@@ -64,51 +64,51 @@ jobs:
           exit 1
         fi
 
-    # ✅ Step 9: Open, Modify, and Re-zip ModbusTCPMaster.zip
-    - name: 'Open, Modify & Re-zip ModbusTCPMaster.zip'
-      run: |
-        echo "📂 Unzipping output.zip..."
-        unzip -o output.zip -d temp_dir
-        echo "✅ Unzip Complete"
+    # # ✅ Step 9: Open, Modify, and Re-zip ModbusTCPMaster.zip
+    # - name: 'Open, Modify & Re-zip ModbusTCPMaster.zip'
+    #   run: |
+    #     echo "📂 Unzipping output.zip..."
+    #     unzip -o output.zip -d temp_dir
+    #     echo "✅ Unzip Complete"
     
-        echo "📂 Unzipping ModbusTCPMaster.zip from extracted content..."
-        if [ -f "temp_dir/ModbusTCPMaster.zip" ]; then
-          unzip -o temp_dir/ModbusTCPMaster.zip -d temp_dir/ModbusTCPMaster
-          echo "✅ ModbusTCPMaster.zip extracted successfully"
-        else
-          echo "❌ Error: ModbusTCPMaster.zip not found!"
-          exit 1
-        fi
+    #     echo "📂 Unzipping ModbusTCPMaster.zip from extracted content..."
+    #     if [ -f "temp_dir/ModbusTCPMaster.zip" ]; then
+    #       unzip -o temp_dir/ModbusTCPMaster.zip -d temp_dir/ModbusTCPMaster
+    #       echo "✅ ModbusTCPMaster.zip extracted successfully"
+    #     else
+    #       echo "❌ Error: ModbusTCPMaster.zip not found!"
+    #       exit 1
+    #     fi
     
-        echo "📝 Modifying Project1.deps.json..."
-        PACKAGE_CONFIG="temp_dir/ModbusTCPMaster/Project1.deps.json"
+    #     echo "📝 Modifying Project1.deps.json..."
+    #     PACKAGE_CONFIG="temp_dir/ModbusTCPMaster/Project1.deps.json"
     
-        # Check if the file exists
-        if [ -f "$PACKAGE_CONFIG" ]; then
-          # Modify the content (Example: Increment version number)
-          jq '.version += 1' "$PACKAGE_CONFIG" > temp_dir/ModbusTCPMaster/Project1.deps_updated.json
-          mv temp_dir/ModbusTCPMaster/Project1.deps_updated.json "$PACKAGE_CONFIG"
-          echo "✅ package_config.json modified successfully"
-        else
-          echo "❌ Error: Project1.deps.json not found!"
-          exit 1
-        fi
+    #     # Check if the file exists
+    #     if [ -f "$PACKAGE_CONFIG" ]; then
+    #       # Modify the content (Example: Increment version number)
+    #       jq '.version += 1' "$PACKAGE_CONFIG" > temp_dir/ModbusTCPMaster/Project1.deps_updated.json
+    #       mv temp_dir/ModbusTCPMaster/Project1.deps_updated.json "$PACKAGE_CONFIG"
+    #       echo "✅ package_config.json modified successfully"
+    #     else
+    #       echo "❌ Error: Project1.deps.json not found!"
+    #       exit 1
+    #     fi
     
-        echo "📦 Zipping ModbusTCPMaster content again..."
-        cd temp_dir/ModbusTCPMaster
-        zip -r ModbusTCPMaster.zip .
-        mv ModbusTCPMaster.zip ../
-        cd ../..
+    #     echo "📦 Zipping ModbusTCPMaster content again..."
+    #     cd temp_dir/ModbusTCPMaster
+    #     zip -r ModbusTCPMaster.zip .
+    #     mv ModbusTCPMaster.zip ../
+    #     cd ../..
     
-        echo "🧹 Removing ModbusTCPMaster folder..."
-        rm -rf temp_dir/ModbusTCPMaster
-        echo "✅ ModbusTCPMaster folder removed successfully"
+    #     echo "🧹 Removing ModbusTCPMaster folder..."
+    #     rm -rf temp_dir/ModbusTCPMaster
+    #     echo "✅ ModbusTCPMaster folder removed successfully"
     
-        echo "📦 Replacing modified ModbusTCPMaster.zip in output.zip..."
-        cd temp_dir
-        zip -r ../output.zip *
-        cd ..
-        echo "✅ output.zip updated successfully"
+    #     echo "📦 Replacing modified ModbusTCPMaster.zip in output.zip..."
+    #     cd temp_dir
+    #     zip -r ../output.zip *
+    #     cd ..
+    #     echo "✅ output.zip updated successfully"
 
     # ✅ Step 10: Verify Updated output.zip Existence
     - name: 'Verify Updated output.zip'
